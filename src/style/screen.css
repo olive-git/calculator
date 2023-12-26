@@ -1,0 +1,10 @@
+.screen {
+    height: 300px;
+    margin: auto;
+}
+
+.resultText {
+    padding-left: 10px;
+    color: darkgray;
+    font-style: italic;
+}
