@@ -25,13 +25,13 @@ export class Keyboard extends Component {
         const opsKeys = []
         let i = 0;
         OPS.forEach(op => {
-            opsKeys.push(<Key key={i} keyValue={op} />)
+            opsKeys.push(<div className="col"><Key key={i} keyValue={op} /></div>)
             i++;
         })
         return <div className="m-2">
-            <input type="text" ref={this.input} />
-            <button onClick={this.handleClick}>Tester</button>
-            <div>{opsKeys}</div>
+            {/* <input type="text" ref={this.input} /> */}
+            {/* <button onClick={this.handleClick}>Tester</button> */}
+            <div className="row">{opsKeys}</div>
             <div>{numberKeys}</div>
         </div>
     }
