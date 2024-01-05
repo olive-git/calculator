@@ -8,3 +8,8 @@
     color: darkgray;
     font-style: italic;
 }
+
+.entries {
+    background: transparent;
+    border: none;
+}
