@@ -1,38 +1,36 @@
 import { Component, createRef } from "react";
-import { Keyrow } from './Keyrow';
-import { Key } from './Key';
 import { appConstants } from './constants/app.constants'
 
 const NUMBERS = appConstants.NUMBERS;
 const OPS = appConstants.OPS;
 
-export class Keyboard extends Component {
-    constructor(props){
-        super(props)
-        this.handleClick = this.handleClick.bind(this)
-        this.input = createRef()
-    }
+export function NumericKeyboard (props) {
 
-    handleClick(e) {
-        console.log(this.input.current.value)
-    }
+    const handleClick = (e) => {
+        // console.log("You clicked the key ", e.target.value)
+        props.number(e.target.value)
+    } 
 
-    render(){
-        const numberKeys = []
-        NUMBERS.forEach(num => {
-            numberKeys.push(<Keyrow key={num} row={num} />)
-        })
-        const opsKeys = []
-        let i = 0;
-        OPS.forEach(op => {
-            opsKeys.push(<div className="col"><Key key={i} keyValue={op} /></div>)
-            i++;
-        })
-        return <div className="m-2">
-            {/* <input type="text" ref={this.input} /> */}
-            {/* <button onClick={this.handleClick}>Tester</button> */}
-            <div className="row">{opsKeys}</div>
-            <div>{numberKeys}</div>
+    return <div className="container">
+        {/* bloc des opérations */}
+        <div className="row">
+            {OPS.map((op, opIndex) => (
+                <div key={opIndex} className="col-3">
+                    <button key={opIndex} className="btn btn-light btn-keyboard" value={op}>{op}</button>
+                </div>
+            ))}
         </div>
-    }
+        {/* clavier numérique */}
+        {NUMBERS.map((row, rowIndex) => (
+            <div key={rowIndex} className="row">
+                {row.map((num, index) => (
+                    <div key={index} className="col-4">
+                        <button key={index} className="btn btn-light btn-keyboard" value={num} onClick={handleClick}>{num}</button>
+                    </div>
+                    ))}
+            </div>
+            ))}
+        <div>
+        </div>
+    </div>
 }
